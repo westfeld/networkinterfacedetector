@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		88D414A921FD98740016E974 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D414A821FD98740016E974 /* main.m */; };
+		88D414B121FD9B730016E974 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88D414B021FD9B730016E974 /* SystemConfiguration.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +26,7 @@
 /* Begin PBXFileReference section */
 		88D414A521FD98740016E974 /* NetworkInterfaceDetector */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = NetworkInterfaceDetector; sourceTree = BUILT_PRODUCTS_DIR; };
 		88D414A821FD98740016E974 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		88D414B021FD9B730016E974 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +34,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88D414B121FD9B730016E974 /* SystemConfiguration.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -43,6 +46,7 @@
 			children = (
 				88D414A721FD98740016E974 /* NetworkInterfaceDetector */,
 				88D414A621FD98740016E974 /* Products */,
+				88D414AF21FD9B730016E974 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -60,6 +64,14 @@
 				88D414A821FD98740016E974 /* main.m */,
 			);
 			path = NetworkInterfaceDetector;
+			sourceTree = "<group>";
+		};
+		88D414AF21FD9B730016E974 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				88D414B021FD9B730016E974 /* SystemConfiguration.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
