@@ -14,15 +14,20 @@
 void dynamicStoreCallback(SCDynamicStoreRef store, CFArrayRef changedKeys, void* __nullable info) {
     CFIndex count = CFArrayGetCount(changedKeys);
     for (CFIndex i=0; i<count; i++) {
-        NSLog(@"Key \"%@\" was changed", CFArrayGetValueAtIndex(changedKeys, i));
+        CFStringRef key = CFArrayGetValueAtIndex(changedKeys, i);
+        NSLog(@"Key \"%@\" was changed", key);
+        CFPropertyListRef ref = SCDynamicStoreCopyValue(store,key);
+        NSDictionary * dict = (NSDictionary *)CFBridgingRelease(ref);
+        NSLog(@"Value %@", dict);
     }
 }
 
 int main(int argc, const char * argv[]) {
-    NSArray *SCMonitoringInterfaceKeys = @[@"State:/Network/Interface.*"];
+    NSArray *SCMonitoringInterfaceKeys = @[@"State:/Network/Interface"];
+    NSArray *patterns = @[@"en\\d*/IPv4"];
     @autoreleasepool {
         SCDynamicStoreRef dsr = SCDynamicStoreCreate(NULL, CFSTR("network_interface_detector"), &dynamicStoreCallback, NULL);
-        SCDynamicStoreSetNotificationKeys(dsr, CFBridgingRetain(SCMonitoringInterfaceKeys), NULL);
+        SCDynamicStoreSetNotificationKeys(dsr, CFBridgingRetain(SCMonitoringInterfaceKeys), CFBridgingRetain(patterns));
         CFRunLoopAddSource(CFRunLoopGetCurrent(), SCDynamicStoreCreateRunLoopSource(NULL, dsr, 0), kCFRunLoopDefaultMode);
         NSLog(@"Starting RunLoop...");
         while([[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]]);
